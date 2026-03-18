@@ -1,0 +1,11 @@
+# Exclude sensitive files
+*.bak
+*.log
+*.db
+*.sqlite
+credentials/
+media/
+extensions/
+/tmp/
+node_modules/
+*.json.bak*

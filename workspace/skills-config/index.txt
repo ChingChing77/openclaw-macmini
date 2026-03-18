@@ -1,0 +1,9 @@
+browser-automation
+memory-lancedb-pro
+monica-three-tier-memory
+multi-source-news-digest
+openclaw-workspace-main
+self-evolution
+self-improving-agent
+semantic-memory-search
+stock-analyzer
