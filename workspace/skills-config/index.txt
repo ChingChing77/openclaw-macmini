@@ -1,3 +1,5 @@
+akshare-finance
+akshare-stock
 browser-automation
 memory-lancedb-pro
 monica-three-tier-memory
@@ -7,3 +9,4 @@ self-evolution
 self-improving-agent
 semantic-memory-search
 stock-analyzer
+stocks

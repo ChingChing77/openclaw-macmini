@@ -41,7 +41,7 @@
       "name": "BTC预测验证",
       "enabled": true,
       "createdAtMs": 1773542008402,
-      "updatedAtMs": 1773842165875,
+      "updatedAtMs": 1773874553999,
       "schedule": {
         "kind": "cron",
         "expr": "55 * * * *"
@@ -59,11 +59,11 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1773845700000,
-        "lastRunAtMs": 1773842100009,
+        "nextRunAtMs": 1773878100000,
+        "lastRunAtMs": 1773874500009,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 65866,
+        "lastDurationMs": 53990,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -140,7 +140,7 @@
       "name": "BTC预测",
       "enabled": true,
       "createdAtMs": 1773673010917,
-      "updatedAtMs": 1773839093378,
+      "updatedAtMs": 1773875190928,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -159,14 +159,68 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1773842673628,
-        "lastRunAtMs": 1773839073635,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 19743,
-        "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 2,
-        "lastError": "TypeError: Cannot destructure property 'tenant_access_token' of '(intermediate value)' as it is undefined."
+        "nextRunAtMs": 1773878673628,
+        "lastRunAtMs": 1773875073636,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 117292,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
+      }
+    },
+    {
+      "id": "af544923-cda2-468f-bfdb-09080bf9f618",
+      "name": "OpenClaw配置备份",
+      "enabled": true,
+      "createdAtMs": 1773842767244,
+      "updatedAtMs": 1773842767244,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 22 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "执行备份脚本：/bin/bash /Users/openclaw/.openclaw/scripts/openclaw-backup.sh",
+        "timeoutSeconds": 120
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
+      },
+      "state": {
+        "nextRunAtMs": 1773928800000
+      }
+    },
+    {
+      "id": "2d89671f-0049-49f6-80fe-2f42cd097d87",
+      "name": "Workspace每周精简",
+      "enabled": true,
+      "createdAtMs": 1773844595977,
+      "updatedAtMs": 1773844595977,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 8 * * 1",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是openclaw-workspace技能。请执行以下任务：\n\n1. 统计workspace所有文件大小：wc -c ~/.openclaw/workspace/*.md\n2. 检查是否有文件超过10000字符\n3. 检查是否有重复内容（同一事实出现在多个文件）\n4. 检查MEMORY.md是否有需要清理的过时内容\n5. 检查TOOLS.md中的skills列表是否最新\n6. 检查docs/目录是否有过大文件需要移出\n7. 如有问题，执行精简；如无问题，输出'✅ Workspace状态良好，无需精简'\n8. 将精简结果追加到memory/YYYY-MM-DD.md\n\n只做必要的精简，不要过度修改。",
+        "timeoutSeconds": 180
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
+      },
+      "state": {
+        "nextRunAtMs": 1774225800000
       }
     }
   ]
