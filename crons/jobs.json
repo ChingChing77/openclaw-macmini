@@ -6,7 +6,7 @@
       "name": "美股报告",
       "enabled": true,
       "createdAtMs": 1773531811301,
-      "updatedAtMs": 1773820920036,
+      "updatedAtMs": 1773907320040,
       "schedule": {
         "kind": "cron",
         "expr": "0 16 * * *",
@@ -25,13 +25,13 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1773907200000,
-        "lastRunAtMs": 1773820800008,
+        "nextRunAtMs": 1773993600000,
+        "lastRunAtMs": 1773907200010,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 120028,
+        "lastDurationMs": 120030,
         "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 2,
+        "consecutiveErrors": 3,
         "lastErrorReason": "timeout",
         "lastError": "cron: job execution timed out"
       }
@@ -41,7 +41,7 @@
       "name": "BTC预测验证",
       "enabled": true,
       "createdAtMs": 1773542008402,
-      "updatedAtMs": 1773874553999,
+      "updatedAtMs": 1773928620048,
       "schedule": {
         "kind": "cron",
         "expr": "55 * * * *"
@@ -50,7 +50,7 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "你是BTC预测验证员。请执行以下任务：\n\n1. 查询BTC预测任务（ID: 4a4ae468-f76b-4a93-999f）的最近一次成功运行的输出内容\n2. 获取当前BTC最新价格（从Binance API）\n3. 对比预测与实际价格，给出验证结果\n\n重点验证：\n- 预测方向（上涨/下跌/震荡）是否正确\n- 预测价位区间是否准确\n- 分析准确度并给出评分（1-5星）\n\n输出格式：\n## BTC 预测验证结果\n\n### 预测回顾\n- 预测时间：\n- 预测价格/方向：\n- 预测区间：\n\n### 实际结果\n- 当前价格：\n- 实际涨跌：\n\n### 验证结论\n- 方向是否正确：✅/❌\n- 准确度评分：⭐⭐⭐⭐⭐\n\n使用简体中文。",
+        "message": "你是BTC预测验证员。请执行以下任务：\n\n1. 读取BTC预测任务（ID: 4a4ae468-f76b-4a93-999f）的最近一次成功运行的输出\n2. 获取当前BTC最新价格（从Binance/yfinance）\n3. 对比预测与实际价格，给出验证结果\n\n## 验证标准（基于历史回测）\n\n✅ 方向正确：预测方向与实际4h涨跌方向一致\n❌ 方向错误：预测方向与实际4h涨跌方向相反\n⚠️ 偏差过大：方向对但价格区间偏离超过5%\n\n## 回测参考基准\n- 均线空头排列出现后8h内下跌胜率：56.7%\n- RSI超卖反弹胜率：5.2%（极低，不应作为主信号）\n- RSI超买回落胜率：2.4%（极低，不应作为主信号）\n- 布林下轨反弹胜率：1.7%（几乎无效）\n\n## 输出格式\n\n```\n## BTC 预测验证\n\n### 预测回顾\n- 预测时间：[时间]\n- 预测方向：[做多/做空/观望]\n- 预测区间：[价格区间]\n- 主要依据：[均线排列/RSI/MACD等]\n\n### 实际结果\n- 当前价格：[价格]\n- 4h涨跌：[金额] ([百分比])\n\n### 验证结论\n- 方向是否正确：✅/❌\n- 区间是否准确：✅/❌（偏差X%）\n- 验证评分：⭐⭐⭐（满分5星）\n- 依据分析：是否符合回测规律？\n\n### 本次教训\n[如果预测错误，分析原因：\n- 是否过度依赖无效指标（RSI/Bollinger/MACD）？\n- 均线排列信号是否被正确识别？\n- 是否忽略了大环境趋势？]\n```\n\n使用简体中文。",
         "timeoutSeconds": 120
       },
       "delivery": {
@@ -59,14 +59,15 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1773878100000,
-        "lastRunAtMs": 1773874500009,
-        "lastRunStatus": "ok",
-        "lastStatus": "ok",
-        "lastDurationMs": 53990,
-        "lastDeliveryStatus": "delivered",
-        "consecutiveErrors": 0,
-        "lastDelivered": true
+        "nextRunAtMs": 1773932100000,
+        "lastRunAtMs": 1773928500019,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 120029,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 2,
+        "lastErrorReason": "timeout",
+        "lastError": "cron: job execution timed out"
       }
     },
     {
@@ -74,7 +75,7 @@
       "name": "A股6只股票早盘分析",
       "enabled": true,
       "createdAtMs": 1773669410099,
-      "updatedAtMs": 1773795855710,
+      "updatedAtMs": 1773882418499,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * 1,2,3,4,5",
@@ -92,14 +93,14 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1773882000000,
-        "lastRunAtMs": 1773795600008,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 255702,
-        "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 3,
-        "lastError": "AxiosError: Request failed with status code 400"
+        "nextRunAtMs": 1773968400000,
+        "lastRunAtMs": 1773882000009,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 418490,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
       }
     },
     {
@@ -107,7 +108,7 @@
       "name": "A股6只股票午盘分析",
       "enabled": true,
       "createdAtMs": 1773669416883,
-      "updatedAtMs": 1773817404151,
+      "updatedAtMs": 1773904068325,
       "schedule": {
         "kind": "cron",
         "expr": "0 15 * * 1,2,3,4,5",
@@ -125,11 +126,11 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1773903600000,
-        "lastRunAtMs": 1773817200008,
+        "nextRunAtMs": 1773990000000,
+        "lastRunAtMs": 1773903600011,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 204143,
+        "lastDurationMs": 468314,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -140,7 +141,7 @@
       "name": "BTC预测",
       "enabled": true,
       "createdAtMs": 1773673010917,
-      "updatedAtMs": 1773875190928,
+      "updatedAtMs": 1773925574072,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -150,7 +151,7 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "请分析当前BTC行情，提供走势预测和明确的合约买卖建议（做多/做空/观望），包括入场价位、止盈止损位置。使用简体中文。",
+        "message": "你是黑莓🫐，BTC量化研究员。\n\n## 核心原则\n**数据驱动**。BTC技术指标在加密市场与传统股票不同，以下是历史回测结论（2026年2-3月，42天，1H K线数据），请严格遵循：\n\n### ✅ 有效指标（顺势信号）\n- **均线空头排列**（MA5<MA20<MA50）：8h内下跌胜率 **56.7%**，当前出现排列时顺势做空\n- **均线多头排列**（MA5>MA20>MA50）：8h内上涨胜率 **46.6%**，偏中性，谨慎顺势\n\n### ❌ 已验证无效指标（勿单独依赖）\n- RSI超卖（<30）：反弹胜率仅 **5.2%**，超卖≠抄底信号\n- RSI超买（>70）：回落胜率仅 **2.4%**，超买≠做空依据\n- 布林下轨触及：反弹胜率仅 **1.7%**，BTC不按布林带反弹\n- MACD金叉/死叉：短期（4h）胜率不足20%，不建议单独使用\n\n## 预测流程\n\n**第一步：获取数据**\n```python\nimport os, json, requests\nos.environ['http_proxy'] = 'http://127.0.0.1:7890'\nurl = \"https://api.binance.com/api/v3/klines\"\nparams = {\"symbol\": \"BTCUSDT\", \"interval\": \"1h\", \"limit\": 200}\nr = requests.get(url, params=params, proxies={\"http\":\"http://127.0.0.1:7890\",\"https\":\"http://127.0.0.1:7890\"}, timeout=10)\ndata = json.loads(r.text)\ncloses = [float(k[4]) for k in data]\n```\n\n**第二步：计算均线状态**\n```python\nimport numpy as np\ndef sma(arr, n): return np.convolve(arr, np.ones(n)/n, 'valid')\nc = np.array(closes[-200:])\nma5 = sma(c, 5)[-1]\nma20 = sma(c, 20)[-1]\nma50 = sma(c, 50)[-1]\ntrend = \"多头\" if ma5 > ma20 > ma50 else \"空头\" if ma5 < ma20 < ma50 else \"混乱\"\nprint(f\"MA5={ma5:.0f} MA20={ma20:.0f} MA50={ma50:.0f} → {trend}\")\n```\n\n**第三步：结合多指标判断**\n- 均线排列是主信号，权重最高\n- RSI/Bollinger只做辅助参考，不做主信号\n- 关注成交量是否放大（量能放大是趋势延续的确认）\n- 注意当前价格与均线的偏离程度\n\n**第四步：输出格式**\n```\n## 🫐 BTC 行情分析\n时间：[当前时间]\n\n### 价格状态\n- 当前价：[price]\n- MA5/MA20/MA50：[值] → [多头/空头/混乱]\n- 均线偏离：[当前价与各均线关系]\n\n### 核心判断\n⚠️ 技术指标有效性说明：\n- RSI/Bollinger胜率极低，勿作为主信号\n- 均线空头排列是历史胜率最高信号（56.7%）\n\n[综合各指标，给出方向判断]\n\n### 操作建议\n方向：[做多/做空/观望]\n入场区间：[价格区间]\n止损：[价格]\n止盈：[价格]\n置信度：[高/中/低]（参考均线排列强度）\n\n### 风险提示\n⚠️ 以上仅为技术分析，不构成投资建议。请根据自身风险承受能力决策。\n```\n\n要求：\n- 使用简体中文\n- 数据尽量从Binance API实时获取\n- 如网络不通，使用yfinance备用\n- 分析要有逻辑依据，不要泛泛而谈\n- 操作建议必须明确（做多/做空/观望三选一）\n",
         "timeoutSeconds": 300
       },
       "delivery": {
@@ -159,11 +160,11 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1773878673628,
-        "lastRunAtMs": 1773875073636,
+        "nextRunAtMs": 1773929073628,
+        "lastRunAtMs": 1773925473640,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 117292,
+        "lastDurationMs": 100432,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -193,7 +194,8 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1773928800000
+        "nextRunAtMs": 1773928800000,
+        "runningAtMs": 1773928800006
       }
     },
     {
@@ -221,6 +223,60 @@
       },
       "state": {
         "nextRunAtMs": 1774225800000
+      }
+    },
+    {
+      "id": "3db5474d-19ee-4bcb-8497-cd0711ec55a6",
+      "name": "每日宏观早报",
+      "description": "每日8:30发送全球市场总览（宏观/A股/港股/美股/加密货币）",
+      "enabled": true,
+      "createdAtMs": 1773891140628,
+      "updatedAtMs": 1773891140628,
+      "schedule": {
+        "kind": "cron",
+        "expr": "30 8 * * *",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是黑莓🫐，专业金融研究员。请整理并推送今日早间全球金融市场日报，内容包括：\n\n1. 【加密货币】BTC最新价格、24h涨跌（来源：Binance/yfinance）\n2. 【美股】标普500、道琼斯、纳斯达克收盘/期货点位及涨跌幅\n3. 【黄金/大宗】黄金、原油价格\n4. 【A股】大力自选6只股票最新行情（002460赣锋锂业、002965祥鑫科技、301238瑞泰新材、513310中韩半导体ETF、603083剑桥科技、603501豪威集团），涨跌超2%需重点标注\n5. 【宏观要闻】从华尔街见闻/微博热搜等获取今日最相关宏观金融新闻（地缘政治、美联储政策、中美关系等），按重要性倒序，每条附一句话影响评估和重要性打分（1-5星）\n6. 【今日展望】综合以上信息，给出今日市场展望和重点关注事件\n\n格式要求：\n- 清晰易读，中文输出\n- 每条新闻按重要性⭐倒序排列\n- 行情数据用表格呈现\n- 涨跌用颜色标注（红跌绿涨）\n- 结尾注明：⚠️ 以上仅为信息整理，不构成投资建议\n\n数据获取提示：\n- A股股票价格：用Python urllib访问腾讯行情接口（http://qt.gtimg.cn/q=sz002460格式，沪市加sh前缀，深市加sz前缀）\n- BTC/美股指数：yfinance（如BTC-USD、^GSPC、^DJI、^IXIC）\n- 设置代理：os.environ['http_proxy']='http://127.0.0.1:7890'\n- 宏观新闻：优先从实时数据源获取"
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
+      },
+      "state": {
+        "nextRunAtMs": 1773966600000
+      }
+    },
+    {
+      "id": "77c93d38-77df-4b86-82f9-27432764230c",
+      "name": "BTC指标胜率周回测",
+      "enabled": true,
+      "createdAtMs": 1773893865649,
+      "updatedAtMs": 1773893865649,
+      "schedule": {
+        "kind": "cron",
+        "expr": "0 8 * * 1",
+        "tz": "Asia/Shanghai"
+      },
+      "sessionTarget": "isolated",
+      "wakeMode": "now",
+      "payload": {
+        "kind": "agentTurn",
+        "message": "你是黑莓🫐 BTC量化研究员。请执行以下任务：\n\n## BTC技术指标周度回测任务\n\n### 执行步骤\n\n**1. 获取数据**\n用Python获取Binance近90天BTC/USDT K线（1H）：\n```python\nimport os, json, requests, numpy as np\nos.environ['http_proxy'] = 'http://127.0.0.1:7890'\nurl = 'https://api.binance.com/api/v3/klines'\nparams = {'symbol':'BTCUSDT','interval':'1h','limit':2160}\nr = requests.get(url, params=params, proxies={'http':'http://127.0.0.1:7890','https':'http://127.0.0.1:7890'}, timeout=15)\ndata = json.loads(r.text)\ncloses = np.array([float(k[4]) for k in data])\n```\n\n**2. 计算指标**\n```python\ndef calc_rsi(prices, period=14):\n    deltas = np.diff(prices)\n    gains = np.where(deltas>0, deltas, 0)\n    losses = np.where(deltas<0, -deltas, 0)\n    avg_gain = np.convolve(gains, np.ones(period)/period, 'valid')\n    avg_loss = np.convolve(losses, np.ones(period)/period, 'valid')\n    rs = avg_gain / (avg_loss + 1e-10)\n    return np.concatenate([[np.nan]*period, 100 - (100/(1+rs))])\n\ndef calc_ema(prices, n):\n    ema = np.zeros_like(prices, dtype=float)\n    ema[0] = prices[0]\n    for i in range(1, len(prices)): ema[i] = (prices[i]-ema[i-1])*(2/(n+1)) + ema[i-1]\n    return ema\n\nrsi = calc_rsi(closes, 14)\nema12 = calc_ema(closes, 12)\nema26 = calc_ema(closes, 26)\nmacd_line = ema12 - ema26\nsignal = calc_ema(macd_line, 9)\nmacd_hist = macd_line - signal\nbb_ma = np.convolve(closes, np.ones(20)/20, 'valid')\nbb_std = np.array([np.std(closes[max(0,i-19):i+1]) for i in range(19,len(closes))])\nbb_lower = bb_ma - 2*bb_std\nma5 = np.convolve(closes, np.ones(5)/5, 'valid')\nma20 = np.convolve(closes, np.ones(20)/20, 'valid')\nma50 = np.convolve(closes, np.ones(50)/50, 'valid')\nvol_ma24 = np.convolve(np.array([float(k[5]) for k in data]), np.ones(24)/24, 'valid')\n```\n\n**3. 回测信号**\n回测以下7个信号，统计4h/8h后收益是否达标：\n- RSI<30（4h涨超2%→成功）\n- RSI>70（4h跌超2%→成功）\n- MACD金叉（4h涨超1%→成功）\n- MACD死叉（4h跌超1%→成功）\n- 布林下轨触及（4h涨超2%→成功）\n- 均线多头排列（8h上涨→成功）\n- 均线空头排列（8h下跌→成功）\n\n**4. 输出**\n按样本量排序输出表格，标注有效（>55%）/无效（<45%）/中性\n样本量<30标注⚠️警告\n\n**5. 保存**\n将新报告追加到 ~/.openclaw/workspace/BTC-indicator-stats.md，保留历史记录便于趋势对比。\n\n### 注意事项\n- 如果Binance不通，用yfinance备用\n- 输出用简体中文",
+        "timeoutSeconds": 300
+      },
+      "delivery": {
+        "mode": "announce",
+        "channel": "feishu",
+        "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
+      },
+      "state": {
+        "nextRunAtMs": 1774224000000
       }
     }
   ]

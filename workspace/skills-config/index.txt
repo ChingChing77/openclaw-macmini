@@ -4,6 +4,7 @@ browser-automation
 memory-lancedb-pro
 monica-three-tier-memory
 multi-source-news-digest
+openclaw-official
 openclaw-workspace-main
 self-evolution
 self-improving-agent
