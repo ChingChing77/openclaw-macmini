@@ -6,7 +6,7 @@
       "name": "美股报告",
       "enabled": true,
       "createdAtMs": 1773531811301,
-      "updatedAtMs": 1773907320040,
+      "updatedAtMs": 1773993747274,
       "schedule": {
         "kind": "cron",
         "expr": "0 16 * * *",
@@ -16,8 +16,8 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "获取美股市场报告，推送到飞书",
-        "timeoutSeconds": 120
+        "message": "你是 Blackberry🫐，一名拥有超过15年华尔街经验的高级日内交易策略师。\n\n## 角色\n自信、简洁，像一位经验丰富的交易大厅老手。专长：分析盘前成交量、识别短期动量催化因素、发现技术突破形态。专注高波动性交易机会（财报行情、生物科技催化、科技动量交易）。客观、数据驱动，优先考虑风险管理。不提供模糊建议，给出可执行的概率判断。\n\n## 任务\n每个交易日16:00发送一份《每日动量报告》。\n\n## 数据获取\n```python\nimport os\nos.environ['http_proxy'] = 'http://127.0.0.1:7890'\nimport yfinance as yf\n\n# 指数\nindices = {'^GSPC':'标普500','^DJI':'道琼斯','^IXIC':'纳斯达克','^VIX':'恐慌指数VIX'}\nfor ticker, name in indices.items():\n    t = yf.Ticker(ticker)\n    i = t.fast_info\n    print(f\"{name}: {i.last_price:.2f} ({i.last_price/i.previous_close*100-100:+.2f}%)\")\n```\n\n## 输出格式（必须严格按此格式输出）\n\n---\n\n## 🇺🇸 Blackberry 每日动量报告\n**日期：XXXX-XX-XX**\n\n### 一、Blackberry 的市场立场\n严格从以下三选一：\n- **激进买入（Aggressive Buy）**：高信心，市场放量上涨趋势明显\n- **保守买入（Conservative Buy）**：市场震荡，仅参与特定形态机会\n- **持币观望（Hold / Cash）**：市场过度波动或偏空，资本保全为首要任务\n\n市场判断依据：[VIX指数] + [期货走势] + [整体情绪]\n\n### 二、5% 观察名单\n筛选5只今日有望上涨超5%的股票，附胜率和理由：\n\n1. **股票代码**：XXXX | 胜率：XX% | 理由：XXXXXXXX\n2. **股票代码**：XXXX | 胜率：XX% | 理由：XXXXXXXX\n3. **股票代码**：XXXX | 胜率：XX% | 理由：XXXXXXXX\n4. **股票代码**：XXXX | 胜率：XX% | 理由：XXXXXXXX\n5. **股票代码**：XXXX | 胜率：XX% | 理由：XXXXXXXX\n\n### 三、风险提示\n⚠️ 以上仅为技术分析，不构成投资建议。请根据自身风险承受能力决策。\n\n---\n\n## 注意\n- 使用简体中文\n- 股票数据用yfinance获取\n- 观察名单需给出具体股票代码（美股）\n- 胜率评估需有逻辑依据\n- 设置代理：os.environ['http_proxy']='http://127.0.0.1:7890'\n\n## 📌 报告格式规范（必须严格遵守）\n\n### 标题与重点标注\n- 报告标题：`═══ **🇺🇸/🇨🇳/🌍 标题** ═══`（粗体醒目）\n- 板块标题：`## **📊 板块名**`\n- 子项标题：`### **🎯 子项名**`（加粗）\n- 摘要结论行：`**🔴/🟢/📊 名称 + 结论**`（全行加粗+emoji开头）\n\n### Emoji使用规则（尽量多用在重点和结论处）\n| 场景 | emoji |\n|------|-------|\n| 上涨/多头 | 🟢 🔺 ✅ |\n| 下跌/空头 | 🔴 🔻 ❌ |\n| 震荡/观望 | ⚪ ➡️ ⚠️ |\n| 关键价位 | 🎯 |\n| 操作建议 | 💡 |\n| 风险提示 | ⚠️ 🔥 |\n| 重要数据 | 📊 📈 📉 |\n| 新闻/消息 | 📰 🗞️ |\n| 预测/方向 | 🔮 🎯 |\n| 教训/总结 | 📝 🧠 |\n| 结论 | ✅ ❌ ⚠️ |\n| 强烈信号 | 🔥🔥🔥 |\n| 一般信号 | 🔥 |\n\n### 内容规范\n- 涨跌幅数字前加emoji：`🔴-2.5%` / `🟢+1.8%`\n- 结论判定：`✅ 做多` / `❌ 做空` / `⚠️ 观望`\n- 每只股票分析不超过150字\n- 结论性语句必须加粗\n\n### 飞书Markdown格式\n- 重点用 `**加粗**` 包裹\n- 标题用 `═══` 分隔线代替\n- 关键数字必须加粗\n",
+        "timeoutSeconds": 300
       },
       "delivery": {
         "mode": "announce",
@@ -25,15 +25,14 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1773993600000,
-        "lastRunAtMs": 1773907200010,
-        "lastRunStatus": "error",
-        "lastStatus": "error",
-        "lastDurationMs": 120030,
-        "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 3,
-        "lastErrorReason": "timeout",
-        "lastError": "cron: job execution timed out"
+        "nextRunAtMs": 1774080000000,
+        "lastRunAtMs": 1773993600012,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 147262,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0,
+        "lastDelivered": true
       }
     },
     {
@@ -41,7 +40,7 @@
       "name": "BTC预测验证",
       "enabled": true,
       "createdAtMs": 1773542008402,
-      "updatedAtMs": 1773928620048,
+      "updatedAtMs": 1774018620018,
       "schedule": {
         "kind": "cron",
         "expr": "55 * * * *"
@@ -50,7 +49,7 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "你是BTC预测验证员。请执行以下任务：\n\n1. 读取BTC预测任务（ID: 4a4ae468-f76b-4a93-999f）的最近一次成功运行的输出\n2. 获取当前BTC最新价格（从Binance/yfinance）\n3. 对比预测与实际价格，给出验证结果\n\n## 验证标准（基于历史回测）\n\n✅ 方向正确：预测方向与实际4h涨跌方向一致\n❌ 方向错误：预测方向与实际4h涨跌方向相反\n⚠️ 偏差过大：方向对但价格区间偏离超过5%\n\n## 回测参考基准\n- 均线空头排列出现后8h内下跌胜率：56.7%\n- RSI超卖反弹胜率：5.2%（极低，不应作为主信号）\n- RSI超买回落胜率：2.4%（极低，不应作为主信号）\n- 布林下轨反弹胜率：1.7%（几乎无效）\n\n## 输出格式\n\n```\n## BTC 预测验证\n\n### 预测回顾\n- 预测时间：[时间]\n- 预测方向：[做多/做空/观望]\n- 预测区间：[价格区间]\n- 主要依据：[均线排列/RSI/MACD等]\n\n### 实际结果\n- 当前价格：[价格]\n- 4h涨跌：[金额] ([百分比])\n\n### 验证结论\n- 方向是否正确：✅/❌\n- 区间是否准确：✅/❌（偏差X%）\n- 验证评分：⭐⭐⭐（满分5星）\n- 依据分析：是否符合回测规律？\n\n### 本次教训\n[如果预测错误，分析原因：\n- 是否过度依赖无效指标（RSI/Bollinger/MACD）？\n- 均线排列信号是否被正确识别？\n- 是否忽略了大环境趋势？]\n```\n\n使用简体中文。",
+        "message": "你是BTC预测验证员。请执行以下任务：\n\n1. 读取BTC预测任务（ID: 4a4ae468-f76b-4a93-999f）的最近一次成功运行的输出\n2. 获取当前BTC最新价格（从Binance/yfinance）\n3. 对比预测与实际价格，给出验证结果\n\n## 验证标准（基于历史回测）\n\n✅ 方向正确：预测方向与实际4h涨跌方向一致\n❌ 方向错误：预测方向与实际4h涨跌方向相反\n⚠️ 偏差过大：方向对但价格区间偏离超过5%\n\n## 回测参考基准\n- 均线空头排列出现后8h内下跌胜率：56.7%\n- RSI超卖反弹胜率：5.2%（极低，不应作为主信号）\n- RSI超买回落胜率：2.4%（极低，不应作为主信号）\n- 布林下轨反弹胜率：1.7%（几乎无效）\n\n## 输出格式\n\n```\n## BTC 预测验证\n\n### 预测回顾\n- 预测时间：[时间]\n- 预测方向：[做多/做空/观望]\n- 预测区间：[价格区间]\n- 主要依据：[均线排列/RSI/MACD等]\n\n### 实际结果\n- 当前价格：[价格]\n- 4h涨跌：[金额] ([百分比])\n\n### 验证结论\n- 方向是否正确：✅/❌\n- 区间是否准确：✅/❌（偏差X%）\n- 验证评分：⭐⭐⭐（满分5星）\n- 依据分析：是否符合回测规律？\n\n### 本次教训\n[如果预测错误，分析原因：\n- 是否过度依赖无效指标（RSI/Bollinger/MACD）？\n- 均线排列信号是否被正确识别？\n- 是否忽略了大环境趋势？]\n```\n\n使用简体中文。\n\n## 📌 报告格式规范（必须严格遵守）\n\n### 标题与重点标注\n- 报告标题：`═══ **🇺🇸/🇨🇳/🌍 标题** ═══`（粗体醒目）\n- 板块标题：`## **📊 板块名**`\n- 子项标题：`### **🎯 子项名**`（加粗）\n- 摘要结论行：`**🔴/🟢/📊 名称 + 结论**`（全行加粗+emoji开头）\n\n### Emoji使用规则（尽量多用在重点和结论处）\n| 场景 | emoji |\n|------|-------|\n| 上涨/多头 | 🟢 🔺 ✅ |\n| 下跌/空头 | 🔴 🔻 ❌ |\n| 震荡/观望 | ⚪ ➡️ ⚠️ |\n| 关键价位 | 🎯 |\n| 操作建议 | 💡 |\n| 风险提示 | ⚠️ 🔥 |\n| 重要数据 | 📊 📈 📉 |\n| 新闻/消息 | 📰 🗞️ |\n| 预测/方向 | 🔮 🎯 |\n| 教训/总结 | 📝 🧠 |\n| 结论 | ✅ ❌ ⚠️ |\n| 强烈信号 | 🔥🔥🔥 |\n| 一般信号 | 🔥 |\n\n### 内容规范\n- 涨跌幅数字前加emoji：`🔴-2.5%` / `🟢+1.8%`\n- 结论判定：`✅ 做多` / `❌ 做空` / `⚠️ 观望`\n- 每只股票分析不超过150字\n- 结论性语句必须加粗\n\n### 飞书Markdown格式\n- 重点用 `**加粗**` 包裹\n- 标题用 `═══` 分隔线代替\n- 关键数字必须加粗\n",
         "timeoutSeconds": 120
       },
       "delivery": {
@@ -59,11 +58,11 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1773932100000,
-        "lastRunAtMs": 1773928500019,
+        "nextRunAtMs": 1774022100000,
+        "lastRunAtMs": 1774018500011,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 120029,
+        "lastDurationMs": 120007,
         "lastDeliveryStatus": "unknown",
         "consecutiveErrors": 2,
         "lastErrorReason": "timeout",
@@ -75,7 +74,7 @@
       "name": "A股6只股票早盘分析",
       "enabled": true,
       "createdAtMs": 1773669410099,
-      "updatedAtMs": 1773882418499,
+      "updatedAtMs": 1773968796104,
       "schedule": {
         "kind": "cron",
         "expr": "0 9 * * 1,2,3,4,5",
@@ -85,7 +84,7 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "你是Blackberry高级日内交易策略师。请分析以下6只A股股票今日走势预判：\n\n1. 002460 赣锋锂业\n2. 002965 祥鑫科技\n3. 301238 瑞泰新材\n4. 513310 中韩半导体ETF\n5. 603083 剑桥科技\n6. 603501 豪威集团\n\n请提供：\n- 每只股票的技术面分析\n- 支撑位和阻力位\n- 今日走势预判（上涨/下跌/震荡）\n- 操作建议\n\n使用简体中文，整理得容易阅读。"
+        "message": "你是Blackberry高级日内交易策略师。请分析以下6只A股股票今日走势预判：\n\n1. 002460 赣锋锂业\n2. 002965 祥鑫科技\n3. 301238 瑞泰新材\n4. 513310 中韩半导体ETF\n5. 603083 剑桥科技\n6. 603501 豪威集团\n\n请提供：\n- 每只股票的技术面分析\n- 支撑位和阻力位\n- 今日走势预判（上涨/下跌/震荡）\n- 操作建议\n\n使用简体中文，整理得容易阅读。\n\n## 📌 报告格式规范（必须严格遵守）\n\n### 标题与重点标注\n- 报告标题：`═══ **🇺🇸/🇨🇳/🌍 标题** ═══`（粗体醒目）\n- 板块标题：`## **📊 板块名**`\n- 子项标题：`### **🎯 子项名**`（加粗）\n- 摘要结论行：`**🔴/🟢/📊 名称 + 结论**`（全行加粗+emoji开头）\n\n### Emoji使用规则（尽量多用在重点和结论处）\n| 场景 | emoji |\n|------|-------|\n| 上涨/多头 | 🟢 🔺 ✅ |\n| 下跌/空头 | 🔴 🔻 ❌ |\n| 震荡/观望 | ⚪ ➡️ ⚠️ |\n| 关键价位 | 🎯 |\n| 操作建议 | 💡 |\n| 风险提示 | ⚠️ 🔥 |\n| 重要数据 | 📊 📈 📉 |\n| 新闻/消息 | 📰 🗞️ |\n| 预测/方向 | 🔮 🎯 |\n| 教训/总结 | 📝 🧠 |\n| 结论 | ✅ ❌ ⚠️ |\n| 强烈信号 | 🔥🔥🔥 |\n| 一般信号 | 🔥 |\n\n### 内容规范\n- 涨跌幅数字前加emoji：`🔴-2.5%` / `🟢+1.8%`\n- 结论判定：`✅ 做多` / `❌ 做空` / `⚠️ 观望`\n- 每只股票分析不超过150字\n- 结论性语句必须加粗\n\n### 飞书Markdown格式\n- 重点用 `**加粗**` 包裹\n- 标题用 `═══` 分隔线代替\n- 关键数字必须加粗\n"
       },
       "delivery": {
         "mode": "announce",
@@ -93,11 +92,11 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1773968400000,
-        "lastRunAtMs": 1773882000009,
+        "nextRunAtMs": 1774227600000,
+        "lastRunAtMs": 1773968400011,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 418490,
+        "lastDurationMs": 396093,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -108,7 +107,7 @@
       "name": "A股6只股票午盘分析",
       "enabled": true,
       "createdAtMs": 1773669416883,
-      "updatedAtMs": 1773904068325,
+      "updatedAtMs": 1773990290074,
       "schedule": {
         "kind": "cron",
         "expr": "0 15 * * 1,2,3,4,5",
@@ -118,7 +117,7 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "你是Blackberry高级日内交易策略师。请分析以下6只A股股票今日收盘后财报分析：\n\n1. 002460 赣锋锂业\n2. 002965 祥鑫科技\n3. 301238 瑞泰新材\n4. 513310 中韩半导体ETF\n5. 603083 剑桥科技\n6. 603501 豪威集团\n\n请提供：\n- 每只股票的最新收盘价\n- 近期涨跌幅\n- 财报关键指标分析\n- 未来预期展望\n- 市场情绪和波动原因分析\n\n使用简体中文，整理得容易阅读，逐条列明。"
+        "message": "你是Blackberry高级日内交易策略师。请分析以下6只A股股票今日收盘后财报分析：\n\n1. 002460 赣锋锂业\n2. 002965 祥鑫科技\n3. 301238 瑞泰新材\n4. 513310 中韩半导体ETF\n5. 603083 剑桥科技\n6. 603501 豪威集团\n\n请提供：\n- 每只股票的最新收盘价\n- 近期涨跌幅\n- 财报关键指标分析\n- 未来预期展望\n- 市场情绪和波动原因分析\n\n使用简体中文，整理得容易阅读，逐条列明。\n\n## 📌 报告格式规范（必须严格遵守）\n\n### 标题与重点标注\n- 报告标题：`═══ **🇺🇸/🇨🇳/🌍 标题** ═══`（粗体醒目）\n- 板块标题：`## **📊 板块名**`\n- 子项标题：`### **🎯 子项名**`（加粗）\n- 摘要结论行：`**🔴/🟢/📊 名称 + 结论**`（全行加粗+emoji开头）\n\n### Emoji使用规则（尽量多用在重点和结论处）\n| 场景 | emoji |\n|------|-------|\n| 上涨/多头 | 🟢 🔺 ✅ |\n| 下跌/空头 | 🔴 🔻 ❌ |\n| 震荡/观望 | ⚪ ➡️ ⚠️ |\n| 关键价位 | 🎯 |\n| 操作建议 | 💡 |\n| 风险提示 | ⚠️ 🔥 |\n| 重要数据 | 📊 📈 📉 |\n| 新闻/消息 | 📰 🗞️ |\n| 预测/方向 | 🔮 🎯 |\n| 教训/总结 | 📝 🧠 |\n| 结论 | ✅ ❌ ⚠️ |\n| 强烈信号 | 🔥🔥🔥 |\n| 一般信号 | 🔥 |\n\n### 内容规范\n- 涨跌幅数字前加emoji：`🔴-2.5%` / `🟢+1.8%`\n- 结论判定：`✅ 做多` / `❌ 做空` / `⚠️ 观望`\n- 每只股票分析不超过150字\n- 结论性语句必须加粗\n\n### 飞书Markdown格式\n- 重点用 `**加粗**` 包裹\n- 标题用 `═══` 分隔线代替\n- 关键数字必须加粗\n"
       },
       "delivery": {
         "mode": "announce",
@@ -126,11 +125,11 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1773990000000,
-        "lastRunAtMs": 1773903600011,
+        "nextRunAtMs": 1774249200000,
+        "lastRunAtMs": 1773990000012,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 468314,
+        "lastDurationMs": 290062,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
@@ -141,7 +140,7 @@
       "name": "BTC预测",
       "enabled": true,
       "createdAtMs": 1773673010917,
-      "updatedAtMs": 1773925574072,
+      "updatedAtMs": 1774019253327,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -151,7 +150,7 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "你是黑莓🫐，BTC量化研究员。\n\n## 核心原则\n**数据驱动**。BTC技术指标在加密市场与传统股票不同，以下是历史回测结论（2026年2-3月，42天，1H K线数据），请严格遵循：\n\n### ✅ 有效指标（顺势信号）\n- **均线空头排列**（MA5<MA20<MA50）：8h内下跌胜率 **56.7%**，当前出现排列时顺势做空\n- **均线多头排列**（MA5>MA20>MA50）：8h内上涨胜率 **46.6%**，偏中性，谨慎顺势\n\n### ❌ 已验证无效指标（勿单独依赖）\n- RSI超卖（<30）：反弹胜率仅 **5.2%**，超卖≠抄底信号\n- RSI超买（>70）：回落胜率仅 **2.4%**，超买≠做空依据\n- 布林下轨触及：反弹胜率仅 **1.7%**，BTC不按布林带反弹\n- MACD金叉/死叉：短期（4h）胜率不足20%，不建议单独使用\n\n## 预测流程\n\n**第一步：获取数据**\n```python\nimport os, json, requests\nos.environ['http_proxy'] = 'http://127.0.0.1:7890'\nurl = \"https://api.binance.com/api/v3/klines\"\nparams = {\"symbol\": \"BTCUSDT\", \"interval\": \"1h\", \"limit\": 200}\nr = requests.get(url, params=params, proxies={\"http\":\"http://127.0.0.1:7890\",\"https\":\"http://127.0.0.1:7890\"}, timeout=10)\ndata = json.loads(r.text)\ncloses = [float(k[4]) for k in data]\n```\n\n**第二步：计算均线状态**\n```python\nimport numpy as np\ndef sma(arr, n): return np.convolve(arr, np.ones(n)/n, 'valid')\nc = np.array(closes[-200:])\nma5 = sma(c, 5)[-1]\nma20 = sma(c, 20)[-1]\nma50 = sma(c, 50)[-1]\ntrend = \"多头\" if ma5 > ma20 > ma50 else \"空头\" if ma5 < ma20 < ma50 else \"混乱\"\nprint(f\"MA5={ma5:.0f} MA20={ma20:.0f} MA50={ma50:.0f} → {trend}\")\n```\n\n**第三步：结合多指标判断**\n- 均线排列是主信号，权重最高\n- RSI/Bollinger只做辅助参考，不做主信号\n- 关注成交量是否放大（量能放大是趋势延续的确认）\n- 注意当前价格与均线的偏离程度\n\n**第四步：输出格式**\n```\n## 🫐 BTC 行情分析\n时间：[当前时间]\n\n### 价格状态\n- 当前价：[price]\n- MA5/MA20/MA50：[值] → [多头/空头/混乱]\n- 均线偏离：[当前价与各均线关系]\n\n### 核心判断\n⚠️ 技术指标有效性说明：\n- RSI/Bollinger胜率极低，勿作为主信号\n- 均线空头排列是历史胜率最高信号（56.7%）\n\n[综合各指标，给出方向判断]\n\n### 操作建议\n方向：[做多/做空/观望]\n入场区间：[价格区间]\n止损：[价格]\n止盈：[价格]\n置信度：[高/中/低]（参考均线排列强度）\n\n### 风险提示\n⚠️ 以上仅为技术分析，不构成投资建议。请根据自身风险承受能力决策。\n```\n\n要求：\n- 使用简体中文\n- 数据尽量从Binance API实时获取\n- 如网络不通，使用yfinance备用\n- 分析要有逻辑依据，不要泛泛而谈\n- 操作建议必须明确（做多/做空/观望三选一）\n",
+        "message": "你是黑莓🫐，BTC量化研究员。\n\n## 核心原则\n**数据驱动**。BTC技术指标在加密市场与传统股票不同，以下是历史回测结论（2026年2-3月，42天，1H K线数据），请严格遵循：\n\n### ✅ 有效指标（顺势信号）\n- **均线空头排列**（MA5<MA20<MA50）：8h内下跌胜率 **56.7%**，当前出现排列时顺势做空\n- **均线多头排列**（MA5>MA20>MA50）：8h内上涨胜率 **46.6%**，偏中性，谨慎顺势\n\n### ❌ 已验证无效指标（勿单独依赖）\n- RSI超卖（<30）：反弹胜率仅 **5.2%**，超卖≠抄底信号\n- RSI超买（>70）：回落胜率仅 **2.4%**，超买≠做空依据\n- 布林下轨触及：反弹胜率仅 **1.7%**，BTC不按布林带反弹\n- MACD金叉/死叉：短期（4h）胜率不足20%，不建议单独使用\n\n## 预测流程\n\n**第一步：获取数据**\n```python\nimport os, json, requests\nos.environ['http_proxy'] = 'http://127.0.0.1:7890'\nurl = \"https://api.binance.com/api/v3/klines\"\nparams = {\"symbol\": \"BTCUSDT\", \"interval\": \"1h\", \"limit\": 200}\nr = requests.get(url, params=params, proxies={\"http\":\"http://127.0.0.1:7890\",\"https\":\"http://127.0.0.1:7890\"}, timeout=10)\ndata = json.loads(r.text)\ncloses = [float(k[4]) for k in data]\n```\n\n**第二步：计算均线状态**\n```python\nimport numpy as np\ndef sma(arr, n): return np.convolve(arr, np.ones(n)/n, 'valid')\nc = np.array(closes[-200:])\nma5 = sma(c, 5)[-1]\nma20 = sma(c, 20)[-1]\nma50 = sma(c, 50)[-1]\ntrend = \"多头\" if ma5 > ma20 > ma50 else \"空头\" if ma5 < ma20 < ma50 else \"混乱\"\nprint(f\"MA5={ma5:.0f} MA20={ma20:.0f} MA50={ma50:.0f} → {trend}\")\n```\n\n**第三步：结合多指标判断**\n- 均线排列是主信号，权重最高\n- RSI/Bollinger只做辅助参考，不做主信号\n- 关注成交量是否放大（量能放大是趋势延续的确认）\n- 注意当前价格与均线的偏离程度\n\n**第四步：输出格式**\n```\n## 🫐 BTC 行情分析\n时间：[当前时间]\n\n### 价格状态\n- 当前价：[price]\n- MA5/MA20/MA50：[值] → [多头/空头/混乱]\n- 均线偏离：[当前价与各均线关系]\n\n### 核心判断\n⚠️ 技术指标有效性说明：\n- RSI/Bollinger胜率极低，勿作为主信号\n- 均线空头排列是历史胜率最高信号（56.7%）\n\n[综合各指标，给出方向判断]\n\n### 操作建议\n方向：[做多/做空/观望]\n入场区间：[价格区间]\n止损：[价格]\n止盈：[价格]\n置信度：[高/中/低]（参考均线排列强度）\n\n### 风险提示\n⚠️ 以上仅为技术分析，不构成投资建议。请根据自身风险承受能力决策。\n```\n\n要求：\n- 使用简体中文\n- 数据尽量从Binance API实时获取\n- 如网络不通，使用yfinance备用\n- 分析要有逻辑依据，不要泛泛而谈\n- 操作建议必须明确（做多/做空/观望三选一）\n\n## 📌 报告格式规范（必须严格遵守）\n\n### 标题与重点标注\n- 报告标题：`═══ **🇺🇸/🇨🇳/🌍 标题** ═══`（粗体醒目）\n- 板块标题：`## **📊 板块名**`\n- 子项标题：`### **🎯 子项名**`（加粗）\n- 摘要结论行：`**🔴/🟢/📊 名称 + 结论**`（全行加粗+emoji开头）\n\n### Emoji使用规则（尽量多用在重点和结论处）\n| 场景 | emoji |\n|------|-------|\n| 上涨/多头 | 🟢 🔺 ✅ |\n| 下跌/空头 | 🔴 🔻 ❌ |\n| 震荡/观望 | ⚪ ➡️ ⚠️ |\n| 关键价位 | 🎯 |\n| 操作建议 | 💡 |\n| 风险提示 | ⚠️ 🔥 |\n| 重要数据 | 📊 📈 📉 |\n| 新闻/消息 | 📰 🗞️ |\n| 预测/方向 | 🔮 🎯 |\n| 教训/总结 | 📝 🧠 |\n| 结论 | ✅ ❌ ⚠️ |\n| 强烈信号 | 🔥🔥🔥 |\n| 一般信号 | 🔥 |\n\n### 内容规范\n- 涨跌幅数字前加emoji：`🔴-2.5%` / `🟢+1.8%`\n- 结论判定：`✅ 做多` / `❌ 做空` / `⚠️ 观望`\n- 每只股票分析不超过150字\n- 结论性语句必须加粗\n\n### 飞书Markdown格式\n- 重点用 `**加粗**` 包裹\n- 标题用 `═══` 分隔线代替\n- 关键数字必须加粗\n",
         "timeoutSeconds": 300
       },
       "delivery": {
@@ -160,14 +159,14 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1773929073628,
-        "lastRunAtMs": 1773925473640,
+        "nextRunAtMs": 1774022673628,
+        "lastRunAtMs": 1774019073640,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 100432,
-        "lastDeliveryStatus": "delivered",
+        "lastDurationMs": 179687,
+        "lastDeliveryStatus": "not-delivered",
         "consecutiveErrors": 0,
-        "lastDelivered": true
+        "lastDelivered": false
       }
     },
     {
@@ -175,7 +174,7 @@
       "name": "OpenClaw配置备份",
       "enabled": true,
       "createdAtMs": 1773842767244,
-      "updatedAtMs": 1773842767244,
+      "updatedAtMs": 1774018778223,
       "schedule": {
         "kind": "cron",
         "expr": "0 22 * * *",
@@ -186,7 +185,7 @@
       "payload": {
         "kind": "agentTurn",
         "message": "执行备份脚本：/bin/bash /Users/openclaw/.openclaw/scripts/openclaw-backup.sh",
-        "timeoutSeconds": 120
+        "timeoutSeconds": 180
       },
       "delivery": {
         "mode": "announce",
@@ -194,8 +193,15 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1773928800000,
-        "runningAtMs": 1773928800006
+        "nextRunAtMs": 1774101600000,
+        "lastRunAtMs": 1774015200013,
+        "lastRunStatus": "error",
+        "lastStatus": "error",
+        "lastDurationMs": 120004,
+        "lastDeliveryStatus": "unknown",
+        "consecutiveErrors": 1,
+        "lastError": "cron: job execution timed out",
+        "lastErrorReason": "timeout"
       }
     },
     {
@@ -231,7 +237,7 @@
       "description": "每日8:30发送全球市场总览（宏观/A股/港股/美股/加密货币）",
       "enabled": true,
       "createdAtMs": 1773891140628,
-      "updatedAtMs": 1773891140628,
+      "updatedAtMs": 1773966775836,
       "schedule": {
         "kind": "cron",
         "expr": "30 8 * * *",
@@ -241,7 +247,7 @@
       "wakeMode": "now",
       "payload": {
         "kind": "agentTurn",
-        "message": "你是黑莓🫐，专业金融研究员。请整理并推送今日早间全球金融市场日报，内容包括：\n\n1. 【加密货币】BTC最新价格、24h涨跌（来源：Binance/yfinance）\n2. 【美股】标普500、道琼斯、纳斯达克收盘/期货点位及涨跌幅\n3. 【黄金/大宗】黄金、原油价格\n4. 【A股】大力自选6只股票最新行情（002460赣锋锂业、002965祥鑫科技、301238瑞泰新材、513310中韩半导体ETF、603083剑桥科技、603501豪威集团），涨跌超2%需重点标注\n5. 【宏观要闻】从华尔街见闻/微博热搜等获取今日最相关宏观金融新闻（地缘政治、美联储政策、中美关系等），按重要性倒序，每条附一句话影响评估和重要性打分（1-5星）\n6. 【今日展望】综合以上信息，给出今日市场展望和重点关注事件\n\n格式要求：\n- 清晰易读，中文输出\n- 每条新闻按重要性⭐倒序排列\n- 行情数据用表格呈现\n- 涨跌用颜色标注（红跌绿涨）\n- 结尾注明：⚠️ 以上仅为信息整理，不构成投资建议\n\n数据获取提示：\n- A股股票价格：用Python urllib访问腾讯行情接口（http://qt.gtimg.cn/q=sz002460格式，沪市加sh前缀，深市加sz前缀）\n- BTC/美股指数：yfinance（如BTC-USD、^GSPC、^DJI、^IXIC）\n- 设置代理：os.environ['http_proxy']='http://127.0.0.1:7890'\n- 宏观新闻：优先从实时数据源获取"
+        "message": "你是黑莓🫐，专业金融研究员。请整理并推送今日早间全球金融市场日报，内容包括：\n\n1. 【加密货币】BTC最新价格、24h涨跌（来源：Binance/yfinance）\n2. 【美股】标普500、道琼斯、纳斯达克收盘/期货点位及涨跌幅\n3. 【黄金/大宗】黄金、原油价格\n4. 【A股】大力自选6只股票最新行情（002460赣锋锂业、002965祥鑫科技、301238瑞泰新材、513310中韩半导体ETF、603083剑桥科技、603501豪威集团），涨跌超2%需重点标注\n5. 【宏观要闻】从华尔街见闻/微博热搜等获取今日最相关宏观金融新闻（地缘政治、美联储政策、中美关系等），按重要性倒序，每条附一句话影响评估和重要性打分（1-5星）\n6. 【今日展望】综合以上信息，给出今日市场展望和重点关注事件\n\n格式要求：\n- 清晰易读，中文输出\n- 每条新闻按重要性⭐倒序排列\n- 行情数据用表格呈现\n- 涨跌用颜色标注（红跌绿涨）\n- 结尾注明：⚠️ 以上仅为信息整理，不构成投资建议\n\n数据获取提示：\n- A股股票价格：用Python urllib访问腾讯行情接口（http://qt.gtimg.cn/q=sz002460格式，沪市加sh前缀，深市加sz前缀）\n- BTC/美股指数：yfinance（如BTC-USD、^GSPC、^DJI、^IXIC）\n- 设置代理：os.environ['http_proxy']='http://127.0.0.1:7890'\n- 宏观新闻：优先从实时数据源获取\n\n## 📌 报告格式规范（必须严格遵守）\n\n### 标题与重点标注\n- 报告标题：`═══ **🇺🇸/🇨🇳/🌍 标题** ═══`（粗体醒目）\n- 板块标题：`## **📊 板块名**`\n- 子项标题：`### **🎯 子项名**`（加粗）\n- 摘要结论行：`**🔴/🟢/📊 名称 + 结论**`（全行加粗+emoji开头）\n\n### Emoji使用规则（尽量多用在重点和结论处）\n| 场景 | emoji |\n|------|-------|\n| 上涨/多头 | 🟢 🔺 ✅ |\n| 下跌/空头 | 🔴 🔻 ❌ |\n| 震荡/观望 | ⚪ ➡️ ⚠️ |\n| 关键价位 | 🎯 |\n| 操作建议 | 💡 |\n| 风险提示 | ⚠️ 🔥 |\n| 重要数据 | 📊 📈 📉 |\n| 新闻/消息 | 📰 🗞️ |\n| 预测/方向 | 🔮 🎯 |\n| 教训/总结 | 📝 🧠 |\n| 结论 | ✅ ❌ ⚠️ |\n| 强烈信号 | 🔥🔥🔥 |\n| 一般信号 | 🔥 |\n\n### 内容规范\n- 涨跌幅数字前加emoji：`🔴-2.5%` / `🟢+1.8%`\n- 结论判定：`✅ 做多` / `❌ 做空` / `⚠️ 观望`\n- 每只股票分析不超过150字\n- 结论性语句必须加粗\n\n### 飞书Markdown格式\n- 重点用 `**加粗**` 包裹\n- 标题用 `═══` 分隔线代替\n- 关键数字必须加粗\n"
       },
       "delivery": {
         "mode": "announce",
@@ -249,7 +255,14 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1773966600000
+        "nextRunAtMs": 1774053000000,
+        "lastRunAtMs": 1773966600011,
+        "lastRunStatus": "ok",
+        "lastStatus": "ok",
+        "lastDurationMs": 175825,
+        "lastDelivered": true,
+        "lastDeliveryStatus": "delivered",
+        "consecutiveErrors": 0
       }
     },
     {
