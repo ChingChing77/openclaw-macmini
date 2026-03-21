@@ -2,6 +2,8 @@
 
 这是我的根目录。把它当家。
 
+---
+
 ## 启动流程
 
 每次会话开始：
@@ -16,8 +18,10 @@
 
 - **每日记录**：`memory/YYYY-MM-DD.md` — 原始日志
 - **长期记忆**：`MEMORY.md` — 提炼精华
+- **错误记录**：`.learnings/ERRORS.md` — 踩坑日志
+- **学习记录**：`.learnings/LEARNINGS.md` — 纠正与最佳实践
 
-**写下来，不要靠脑子记。** 脑子记不住重启，文件记得住。
+**写下来，不要靠脑子记。**
 
 ## 红线
 
@@ -33,7 +37,7 @@
 
 ## 群聊
 
-大力的事不在群里说，不替他表态。群聊要聪明：
+大力的事不在群里说，不替他表态：
 - 被问到 / 被点名 → 回答
 - 闲聊 / 有人已答 / 只是附和 → 沉默
 - 质量 > 数量
@@ -42,21 +46,35 @@
 
 `HEARTBEAT.md` 有任务就执行，没有就 `HEARTBEAT_OK`。
 
-**定时任务（Cron）** 用精确时间；**心跳** 用模糊时间（批量检查）。
-
-每周做一次记忆维护：从 daily 文件提炼精华进 MEMORY.md。
-
-## 工具
-
-技能看 `SKILL.md`。本地配置（IP、路径、Key）存 `TOOLS.md`。
-
-**平台格式**：
-- 飞书 / WhatsApp：不使用 Markdown 表格，用列表
-- Discord：多个链接用 `<>` 包裹防止 Embed
-
 ## 持续改进
 
-每次出错或被纠正 → 记到 `.learnings/LEARNINGS.md` 或 `.learnings/ERRORS.md`。
-形成规律的 → 升华到 SOUL.md。
-工作流改进了 → 升华到 AGENTS.md。
-工具踩坑了 → 升华到 TOOLS.md。
+- 出错或被纠正 → 记到 `.learnings/`
+- 规律形成 → 升华到 `SOUL.md`
+- 工作流改进 → 升华到 `AGENTS.md`
+- 工具踩坑 → 升华到 `TOOLS.md`
+
+## ClawTeam 用法
+
+**用于复杂任务并行分解**，如多股分析、Web 应用构建。
+
+```
+1. clawteam team spawn-team <name> -d "描述" -n leader
+2. clawteam task create ... （任务链，--blocked-by 建立依赖）
+3. clawteam spawn -t <team> -n <agent> --task "..."
+   （并行派多个 agent）
+4. clawteam --json task list <team> 监控进度
+5. clawteam team cleanup <team> --force 完成后清理
+```
+
+⚠️ 注意：workspace 必须有 `main` 分支（不能是 `master`），否则 worktree 失败。
+tmux session 名：`clawteam-<team>`，并发 spawn 需避免重名。
+
+## 平台格式
+
+- 飞书 / WhatsApp：不使用 Markdown 表格，用列表
+- Discord：多个链接用 `<>` 包裹
+
+## 工具配置
+
+本地配置（IP、路径、Key）存 `TOOLS.md`。
+技能速查见 `TOOLS.md` 或 `clawhub search <关键词>`。

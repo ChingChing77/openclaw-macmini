@@ -38,7 +38,7 @@ _只在大会话（飞书私聊）中加载。_
 
 ### 2026-03-18：网络架构确定
 - Mac mini 走 ClashX 代理（7890/7891），akshare/yfinance/Binance 全部通过代理
-- 数据源方案：akshare（A股/港股）、yfinance（美股）、Binance API（加密）
+- 数据源方案：腾讯行情（A股主力）、akshare（备用，需patch）、Alpha Vantage（美股）、Binance API（加密）
 - 技能全家桶安装完成，备份系统上线
 
 ### 2026-03-20：备份脚本修复
@@ -53,12 +53,15 @@ _只在大会话（飞书私聊）中加载。_
 
 ---
 
-## 教训与陷阱
+## 教训与陷阱（详见 TOOLS.md）
 
-- **akshare 东方财富域名被封**：需设 `push2delay.eastmoney.com` 或改用新浪接口
-- **ClashX 必须常驻**：Mac mini 网络完全依赖代理，断开则定时任务全部失效
-- **WiFi networksetup bug**：命令行显示 "not associated" 但实际连接正常，以 ifconfig IP 为准
-- **BTC 急跌规律**：UTC 11:00-12:00（北京时间19-20点）容易出现合约清算瀑布
+详细错误代码已迁移到 `TOOLS.md`，包括 akshare/patch、腾讯接口、ClawTeam 等所有踩坑记录。
+
+关键原则：
+- ClashX 必须常驻，断开则定时任务全部失效
+- 国内站（腾讯/akshare）清除代理环境变量后直连
+- 国际站（Binance）走代理
+- BTC 急跌规律：UTC 11:00-12:00（北京时间19-20点）容易出现合约清算瀑布
 
 ---
 
@@ -75,15 +78,15 @@ _只在大会话（飞书私聊）中加载。_
 | crypto-gold-monitor | 贵金属价格 |
 | daily-news | 每日新闻聚合 |
 | news-aggregator | 多源科技资讯（RSS+Reddit+GitHub） |
-| tech-news-digest | 科技热点聚合（v3.15.0） |
 | excel-xlsx | Excel 读写 |
 | word-docx | Word 读写 |
 | powerpoint-pptx | PPT 生成 |
 | pdf / nano-pdf | PDF 处理 |
 | copywriter | 文案写作 |
-| three-tier-memory | 三层记忆系统（今日新增） |
+| three-tier-memory | 三层记忆系统 |
 | skill-vetter | 安全审核 |
-| openclawmp | Marketplace CLI（今日新增） |
+| openclawmp | Marketplace CLI |
+| clawteam | 多Agent协同（ClawTeam） |
 
 ---
 
@@ -108,6 +111,21 @@ _只在大会话（飞书私聊）中加载。_
 | Workspace 精简 | 每周一 08:30 |
 
 ---
+
+### 2026-03-21：ClawTeam 上线 + 股票看板
+- ClawTeam 安装成功（`clawteam` CLI，`~/.openclaw/workspace/skills/clawteam/`）
+- 用 ClawTeam 组建 5 人小队构建了股票监控看板
+  - 后端：FastAPI + SQLite + akshare（patch 后）
+  - 前端：React + Vite + TailwindCSS + lightweight-charts
+  - 看板：`http://localhost:5173`
+- 数据管道 `data_pipeline.py` 打通：
+  - A股：腾讯 qt.gtimg.cn
+  - 美股：Alpha Vantage API
+  - 加密：Binance API（走代理）
+- akshare 全局 patch（`push2.eastmoney.com` → `push2delay.eastmoney.com`）
+- ClawTeam git 分支 bug：workspace 需 `main` 分支
+- 重大发现：efinance 的 `hsmarketwg.eastmoney.com` 不稳定，改用腾讯接口
+- 已安装技能新增：clawteam、openclawmp
 
 ### 2026-03-20：Workspace 精简
 - 清理 workspace/skills/ 下冗余技能：akshare-finance、memory-lancedb-pro、monica-three-tier-memory、semantic-memory-search、stock-analyzer、stocks、multi-source-news-digest

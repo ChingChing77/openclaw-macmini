@@ -6,7 +6,7 @@
       "name": "美股报告",
       "enabled": true,
       "createdAtMs": 1773531811301,
-      "updatedAtMs": 1773993747274,
+      "updatedAtMs": 1774080246075,
       "schedule": {
         "kind": "cron",
         "expr": "0 16 * * *",
@@ -25,11 +25,11 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1774080000000,
-        "lastRunAtMs": 1773993600012,
+        "nextRunAtMs": 1774166400000,
+        "lastRunAtMs": 1774080000013,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 147262,
+        "lastDurationMs": 246062,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
         "lastDelivered": true
@@ -40,7 +40,7 @@
       "name": "BTC预测验证",
       "enabled": true,
       "createdAtMs": 1773542008402,
-      "updatedAtMs": 1774018620018,
+      "updatedAtMs": 1774101420034,
       "schedule": {
         "kind": "cron",
         "expr": "55 * * * *"
@@ -58,15 +58,15 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1774022100000,
-        "lastRunAtMs": 1774018500011,
+        "nextRunAtMs": 1774104900000,
+        "lastRunAtMs": 1774101300012,
         "lastRunStatus": "error",
         "lastStatus": "error",
-        "lastDurationMs": 120007,
+        "lastDurationMs": 120022,
         "lastDeliveryStatus": "unknown",
-        "consecutiveErrors": 2,
-        "lastErrorReason": "timeout",
-        "lastError": "cron: job execution timed out"
+        "consecutiveErrors": 1,
+        "lastError": "cron: job execution timed out",
+        "lastErrorReason": "timeout"
       }
     },
     {
@@ -140,7 +140,7 @@
       "name": "BTC预测",
       "enabled": true,
       "createdAtMs": 1773673010917,
-      "updatedAtMs": 1774019253327,
+      "updatedAtMs": 1774098348845,
       "schedule": {
         "kind": "cron",
         "expr": "0 * * * *",
@@ -159,14 +159,14 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1774022673628,
-        "lastRunAtMs": 1774019073640,
+        "nextRunAtMs": 1774101873628,
+        "lastRunAtMs": 1774098273640,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 179687,
-        "lastDeliveryStatus": "not-delivered",
+        "lastDurationMs": 75205,
+        "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0,
-        "lastDelivered": false
+        "lastDelivered": true
       }
     },
     {
@@ -174,7 +174,7 @@
       "name": "OpenClaw配置备份",
       "enabled": true,
       "createdAtMs": 1773842767244,
-      "updatedAtMs": 1774018778223,
+      "updatedAtMs": 1774019433875,
       "schedule": {
         "kind": "cron",
         "expr": "0 22 * * *",
@@ -185,7 +185,7 @@
       "payload": {
         "kind": "agentTurn",
         "message": "执行备份脚本：/bin/bash /Users/openclaw/.openclaw/scripts/openclaw-backup.sh",
-        "timeoutSeconds": 180
+        "timeoutSeconds": 300
       },
       "delivery": {
         "mode": "announce",
@@ -200,8 +200,8 @@
         "lastDurationMs": 120004,
         "lastDeliveryStatus": "unknown",
         "consecutiveErrors": 1,
-        "lastError": "cron: job execution timed out",
-        "lastErrorReason": "timeout"
+        "lastErrorReason": "timeout",
+        "runningAtMs": 1774101600007
       }
     },
     {
@@ -237,7 +237,7 @@
       "description": "每日8:30发送全球市场总览（宏观/A股/港股/美股/加密货币）",
       "enabled": true,
       "createdAtMs": 1773891140628,
-      "updatedAtMs": 1773966775836,
+      "updatedAtMs": 1774053217730,
       "schedule": {
         "kind": "cron",
         "expr": "30 8 * * *",
@@ -255,11 +255,11 @@
         "to": "user:ou_f9a2ea548b1320584c1290bdee808c4e"
       },
       "state": {
-        "nextRunAtMs": 1774053000000,
-        "lastRunAtMs": 1773966600011,
+        "nextRunAtMs": 1774139400000,
+        "lastRunAtMs": 1774053000013,
         "lastRunStatus": "ok",
         "lastStatus": "ok",
-        "lastDurationMs": 175825,
+        "lastDurationMs": 217717,
         "lastDelivered": true,
         "lastDeliveryStatus": "delivered",
         "consecutiveErrors": 0
